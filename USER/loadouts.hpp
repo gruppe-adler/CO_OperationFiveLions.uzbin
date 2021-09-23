@@ -18,7 +18,7 @@
 */
 
 
-loadoutFactionBlu = "";
+loadoutFactionBlu = "Peshmerga";
 loadoutFactionOpf = "";
 loadoutFactionInd = "";
 
