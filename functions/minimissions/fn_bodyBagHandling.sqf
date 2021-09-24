@@ -9,9 +9,9 @@ if (isServer) then {
                 _bodyBag setVariable ["grad_minimissions_unitName", _name, true];
 
                 [_bodyBag, 1] call ace_cargo_fnc_setSize;
-                [_bodyBag, true, [0, 1.6, 0.26], 0] remoteExec ["ace_dragging_fnc_setDraggable", 0];
+                [_bodyBag, true, [0, 1.6, 0.26], 0] remoteExec ["ace_dragging_fnc_setDraggable", 0, true];
 
-                [_bodyBag] remoteExec ["grad_minimissions_fnc_bodyBagAction"];
+                [_bodyBag] remoteExec ["grad_minimissions_fnc_bodyBagAction", 0, true];
 
 
         }] call CBA_fnc_addEventHandler;
