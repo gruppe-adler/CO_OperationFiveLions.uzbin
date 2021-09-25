@@ -1,3 +1,7 @@
+if (missionNamespace getVariable ["grad_convoyStarted",false]) exitWith {
+    hint "already started";
+};
+
 missionNamespace setVariable ["grad_convoyStarted",true,true];
 
 private _points = [];
