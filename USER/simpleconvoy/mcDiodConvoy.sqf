@@ -48,7 +48,7 @@ for [{_i=0},{_i<count _convoy},{_i=_i+1}] do {
                 _thisVeh setDriveOnPath [getPos _thisVeh,_thisVeh getPos [0.8 * _distFront,_thisVeh getDir _leader]];
                 private _speedLimit = if (_distFront > ((missionNamespace getVariable ["grad_convoySpeed", 50])/2)) then {
 
-                    if (_distFront < ((missionNamespace getVariable ["grad_convoySpeed", 50])/1.5)) then { (missionNamespace getVariable ["grad_convoySpeed", 50])} else 
+                    if (_distFront < ((missionNamespace getVariable ["grad_convoySpeed", 50])/1.8)) then { (missionNamespace getVariable ["grad_convoySpeed", 50])} else 
                         {((missionNamespace getVariable ["grad_convoySpeed", 50]) + 4)}
                 } else {
                         ((missionNamespace getVariable ["grad_convoySpeed", 50]) - 4)
@@ -57,7 +57,7 @@ for [{_i=0},{_i<count _convoy},{_i=_i+1}] do {
             };
         };
 
-        if (!isNull _follower && {_distBack > ((missionNamespace getVariable ["grad_convoySpeed", 50])*1.5)}) then {
+        if (!isNull _follower && {_distBack > ((missionNamespace getVariable ["grad_convoySpeed", 50])*1.9)}) then {
             _thisVeh limitSpeed 0.5;
         } else {
             if (isNull _leader) then {
@@ -65,7 +65,7 @@ for [{_i=0},{_i<count _convoy},{_i=_i+1}] do {
             };
         };
 
-    },0.5,[_convoy param [_i-1,objNull],_convoy select _i,_convoy param [_i+1,objNull], _points],_convoy select 0] call CBA_fnc_addPerFrameHandler;
+    },0.5,[_convoy param [_i-1,objNull],_convoy select _i,_convoy param [_i+1,objNull], convoyVehicle1, _points],_convoy select 0] call CBA_fnc_addPerFrameHandler;
 };
 
 [{
@@ -85,4 +85,4 @@ for [{_i=0},{_i<count _convoy},{_i=_i+1}] do {
              
     }, [_leader], 3] call CBA_fnc_waitAndExecute;
 },
-[_leader, (_points select (count _points - 1))]] call CBA_fnc_waitUntilAndExecute;
+[(_convoy select 0), (_points select (count _points - 1))]] call CBA_fnc_waitUntilAndExecute;
