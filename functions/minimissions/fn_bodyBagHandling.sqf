@@ -5,7 +5,7 @@ if (isServer) then {
                 params ["_target", "_bodyBag"];
                 diag_log format ["placedInBodyBag _target %1 - bodybag %2", _target, _bodyBag];
                 
-                private _name = name _target;
+                private _name = [_target, false, true] call ace_common_fnc_getName;
                 _bodyBag setVariable ["grad_minimissions_unitName", _name, true];
 
                 [_bodyBag, 1] call ace_cargo_fnc_setSize;

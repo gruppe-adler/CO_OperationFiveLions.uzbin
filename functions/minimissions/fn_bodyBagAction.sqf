@@ -2,13 +2,27 @@ params ["_bodybag"];
 
 private _displayName = "Respawn casualty";
 private _action = ["grad_minimissions_respawnAction", _displayName, "\A3\ui_f\data\igui\cfg\actions\heal_ca.paa", {
+
+    if (_target distance2D (getMarkerPos "respawn_west") > 100) exitWith {
+        hint "Get Closer to Graveyard in FOB.";
+    };
     
-    private _name = _target getVariable ["grad_minimissions_unitName", ""];
-    private _unit = objNull;
+    private _deadStoredName = _target getVariable ["grad_minimissions_unitName", ""];
     {
-        if (name _x == _name) exitWith {
-            _unit = _x;
-            [_target, _unit] remoteExec ["grad_minimissions_fnc_respawnPlayer", _unit];
+        private _deadUnit = _x;
+        private _currentName = [_deadUnit, false, true] call ace_common_fnc_getName;
+        if (_currentName == _deadStoredName) exitWith {
+            [_target, _deadUnit] remoteExec ["grad_minimissions_fnc_respawnPlayer", _deadUnit];
+            
+            private _worldPosition = getPosWorld _target;
+            private _dir = getDir _target;
+
+            private _coffin = createVehicle ["Coffin_02_Flag_F", [0,0,0], [], 0, "NONE"];
+            _coffin setObjectTextureGlobal [0, "data\flag3.paa"];
+            _coffin setDir _dir;
+            _coffin setPosWorld _worldPosition;
+            deleteVehicle _target;
+
         };
     } forEach allDead;
     
