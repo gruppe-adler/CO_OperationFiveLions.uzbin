@@ -8,7 +8,7 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=2249;
+		nextID=2274;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=322;
+		nextID=330;
 	};
 	class Camera
 	{
-		pos[]={10625.895,572.83673,11031.021};
-		dir[]={-0.39030135,-0.54596114,-0.74137408};
-		up[]={-0.25433752,0.83780271,-0.48311344};
-		aside[]={-0.88488793,-2.7118949e-007,0.46585363};
+		pos[]={969.28723,583.83258,8534.4756};
+		dir[]={0.36968338,-0.78160906,0.5024206};
+		up[]={0.4632265,0.62376934,0.62955105};
+		aside[]={0.80545729,2.5422196e-007,-0.5926584};
 	};
 };
 binarizationWanted=0;
@@ -74,13 +74,14 @@ addons[]=
 	"ace_nouniformrestrictions",
 	"ace_parachute",
 	"CUP_Buildings_Config",
-	"A3_Structures_F_EPA_Items_Tools"
+	"A3_Structures_F_EPA_Items_Tools",
+	"CUP_CAMisc"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=41;
+		items=42;
 		class Item0
 		{
 			className="A3_Modules_F_Heli";
@@ -343,6 +344,11 @@ class AddonsMetaData
 			name="Arma 3 Survive Episode - Buildings and Structures";
 			author="Bohemia Interactive";
 			url="https://www.arma3.com";
+		};
+		class Item41
+		{
+			className="CUP_CAMisc";
+			name="CUP_CAMisc";
 		};
 	};
 };
@@ -6815,7 +6821,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=247;
+		items=257;
 		class Item0
 		{
 			dataType="Layer";
@@ -8709,15 +8715,39 @@ class Mission
 			class PositionInfo
 			{
 				position[]={9637.7754,507.6405,9903.0576};
-				angles[]={0,5.3140521,0};
+				angles[]={0,5.3140559,0};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
+				name="salehTransport";
 			};
 			id=1608;
 			type="UK3CB_ANA_B_Mi8";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ammoBox";
+					expression="[_this,_value] call bis_fnc_initAmmoBox;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="[[[[""FirstAidKit""],[1]],[[],[]],[[],[]],[[],[]]],false]";
+						};
+					};
+				};
+				nAttributes=1;
+			};
 		};
 		class Item8
 		{
@@ -16530,7 +16560,205 @@ class Mission
 			};
 			id=2246;
 			type="Land_Shovel_F";
-			atlOffset=0.28546143;
+			atlOffset=0.28533936;
+		};
+		class Item247
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={9571.627,503.45999,9783.9385};
+				angles[]={-0,3.9919343,0};
+			};
+			areaSize[]={5,0,25};
+			areaIsRectangle=1;
+			flags=1;
+			id=2249;
+			type="ModuleHideTerrainObjects_F";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="#filter";
+					expression="_this setVariable [""#filter"",_value]";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=15;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="#hideLocally";
+					expression="_this setVariable [""#hideLocally"",_value]";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				nAttributes=2;
+			};
+		};
+		class Item248
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={9557.8613,503.45233,9801.3457};
+				angles[]={6.2000442,2.2693167,0.046628054};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=2255;
+			type="CUP_A2_Road_PMC_dirt2_7100";
+		};
+		class Item249
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={9566.6543,503.42773,9792.835};
+				angles[]={0.026664702,5.3960338,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=2256;
+			type="CUP_A2_Road_PMC_dirt2_7100";
+		};
+		class Item250
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={9576.4199,503.45859,9784.7813};
+				angles[]={-0,5.2506757,6.2798738};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=2257;
+			type="CUP_A2_Road_PMC_dirt2_7100";
+		};
+		class Item251
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={9548.1035,503.13315,9809.4102};
+				angles[]={0.010000871,2.0874836,0.06988281};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=2258;
+			type="CUP_A2_Road_PMC_dirt2_7100";
+		};
+		class Item252
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={9574.6338,504.41,9824.3984};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=2269;
+			type="CUP_A2_Road_PMC_dirt2_3025";
+		};
+		class Item253
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={9574.5898,504.37918,9812.1592};
+				angles[]={6.2465296,5.6713467,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=2270;
+			type="CUP_A2_Road_PMC_dirt2_3025";
+		};
+		class Item254
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={9581.5518,503.53561,9801.7666};
+				angles[]={6.1868157,5.0915565,6.2798557};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=2271;
+			type="CUP_A2_Road_PMC_dirt2_3025";
+		};
+		class Item255
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={9592.8633,503.45001,9797.4326};
+				angles[]={-0,4.4649286,0};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=2272;
+			type="CUP_A2_Road_PMC_dirt2_3025";
+		};
+		class Item256
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={975.51099,570.15002,8542.752};
+			};
+			side="Empty";
+			class Attributes
+			{
+				name="salehPad";
+			};
+			id=2273;
+			type="HeliHEmpty";
 		};
 	};
 	class Connections
