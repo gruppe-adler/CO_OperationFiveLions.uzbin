@@ -6,7 +6,7 @@ missionNamespace setVariable ["grad_convoyStarted",true,true];
 
 private _points = [];
 
-for "_i" from 10 to 52 do {
+for "_i" from 10 to 54 do {
     _points pushBackUnique (getMarkerPos ("marker_" + str _i));
 };
 
@@ -70,7 +70,7 @@ for [{_i=0},{_i<count _convoy},{_i=_i+1}] do {
 
 [{
    params ["_leader", "_lastpoint"];
-   _leader distance2d _lastpoint < 10
+   _leader distance2d salehTransport < 28
 }, {
     params ["_leader", "_lastpoint"];
     
@@ -78,11 +78,34 @@ for [{_i=0},{_i<count _convoy},{_i=_i+1}] do {
         params ["_leader"];
 
             private _group = group _leader;
+            { _x leaveVehicle (vehicle _x) } forEach units _group;
             _group addVehicle salehTransport;
             (units _group) orderGetIn true;
-            private _waypoint = (_group) addWaypoint [0, getPos salehPad];
-            _waypoint setWaypointType "GET OUT";
+            private _waypoint = (_group) addWaypoint [getPos salehPad, 0];
+            _waypoint setWaypointType "MOVE";
+            private _waypoint2 = (_group) addWaypoint [getPos salehPad, 0];
+            _waypoint2 setWaypointType "GETOUT";
+            _waypoint2 setWaypointStatements ["true", "(vehicle this) land 'land';"];
+
+            [{
+                params ["_leader"];
+                unitReady (vehicle _leader)
+            }, {
+                params ["_leader"];
+                (vehicle _leader) land 'land';
+
+                [{
+                    params ["_leader"];
+                    unitReady (vehicle _leader)
+                }, {
+                    params ["_leader"];
+                    (group _leader) leaveVehicle _vehicle;
+                    _leader moveTo (getPos salehSofa);
+
+                }] call CBA_fnc_waitUntilAndExecute;
+
+            }] call CBA_fnc_waitUntilAndExecute;
              
-    }, [_leader], 3] call CBA_fnc_waitAndExecute;
+    }, [_leader], 1] call CBA_fnc_waitAndExecute;
 },
 [(_convoy select 0), (_points select (count _points - 1))]] call CBA_fnc_waitUntilAndExecute;
