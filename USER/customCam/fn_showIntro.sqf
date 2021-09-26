@@ -5,6 +5,8 @@ private _vehicle = vehicle player;
 if (!isNull (objectParent player) && {(driver _vehicle) != player}) then {
 	diwako_dui_main_toggled_off = true;
 
+	playSound "introMusic";
+
 	[{
 		params ["_vehicle", "_texture", "_duration", "_scale"];
 
@@ -19,7 +21,7 @@ if (!isNull (objectParent player) && {(driver _vehicle) != player}) then {
 		_camera camSetFOV 1;
 		_camera camCommit 0;
 
-		_camera setPos (_vehicle modelToWorld [5, 50, 5]);
+		_camera setPos (_vehicle modelToWorld [5, 100, 15]);
 
 		[{
 			params ["_camera", "_vehicle", "_texture", "_duration", "_scale"];
@@ -31,9 +33,6 @@ if (!isNull (objectParent player) && {(driver _vehicle) != player}) then {
 			_tex setObjectTexture [0, ("data\" + _texture)];
 			_tex setDir (getDir _vehicle);
 			_tex setObjectScale _scale;
-			// debug
-			_camera camSetTarget _tex;
-			_camera camCommit 0;
 
 			_camera camSetTarget _tex;
 			_camera camSetFOV 0.3;
@@ -46,11 +45,16 @@ if (!isNull (objectParent player) && {(driver _vehicle) != player}) then {
 
 			[{
 				params ["_camera", "_texture"];
+
+				[_texture, true] execVM "USER\customCam\fn_animateTexture.sqf";
+			}, [_camera, _tex], (_duration+1)] call CBA_fnc_waitAndExecute;
+
+			[{
+				params ["_camera", "_texture"];
 				_camera cameraEffect ["terminate","back"];
 				camDestroy _camera;
 				diwako_dui_main_toggled_off = false;
-
-				[_texture, true] execVM "USER\customCam\fn_animateTexture.sqf";
+				showCinemaBorder false;
 			}, [_camera, _tex], (_duration+5)] call CBA_fnc_waitAndExecute;
 
 

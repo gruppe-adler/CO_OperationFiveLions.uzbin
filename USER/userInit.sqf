@@ -4,3 +4,4 @@
 */
 
 [] execVM "USER\modules\addModules.sqf";
+[] execvm "USER\markCustomHouses\markCustomHouses.sqf";

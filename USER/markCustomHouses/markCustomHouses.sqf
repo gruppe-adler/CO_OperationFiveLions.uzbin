@@ -4,6 +4,8 @@
     
 */
 
+if (!isServer) exitWith {};
+
 private _houses = [];
 
 {
