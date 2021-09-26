@@ -18,7 +18,7 @@ private _action = ["grad_minimissions_respawnAction", _displayName, "\A3\ui_f\da
             private _dir = getDir _target;
 
             private _coffin = createVehicle ["Coffin_02_Flag_F", [0,0,0], [], 0, "NONE"];
-            _coffin setObjectTextureGlobal [0, "data\flag3.paa"];
+            _coffin setObjectTextureGlobal [2, "data\flag3.paa"];
             _coffin setDir _dir;
             _coffin setPosWorld _worldPosition;
             deleteVehicle _target;
