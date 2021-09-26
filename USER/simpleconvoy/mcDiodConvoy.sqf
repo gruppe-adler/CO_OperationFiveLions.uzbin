@@ -1,5 +1,10 @@
-if (missionNamespace getVariable ["grad_convoyStarted",false]) exitWith {
-    hint "already started";
+if (missionNamespace getVariable ["grad_convoyStarted",false]) then {
+    if (isNil "convoyscript") then {
+        terminate ConvoyScript;
+        hint "terminating convoyscript, as already started";
+    } else {
+        hint "executing convoy script again";
+    };
 };
 
 missionNamespace setVariable ["grad_convoyStarted",true,true];
