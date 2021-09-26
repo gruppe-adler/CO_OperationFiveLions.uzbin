@@ -14,3 +14,14 @@ class introMusic
     // subtitle delay in seconds, subtitle text
     titles[] = { 0, "" };
 };
+
+class lament
+{
+    name = "lament";
+
+    // filename, volume, pitch, distance (optional)
+    sound[] = { "data\lament.ogg", 1, 1 };
+
+    // subtitle delay in seconds, subtitle text
+    titles[] = { 0, "" };
+};

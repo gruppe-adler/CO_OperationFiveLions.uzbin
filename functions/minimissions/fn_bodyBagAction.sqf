@@ -21,6 +21,12 @@ private _action = ["grad_minimissions_respawnAction", _displayName, "\A3\ui_f\da
             _coffin setObjectTextureGlobal [2, "data\flag3.paa"];
             _coffin setDir _dir;
             _coffin setPosWorld _worldPosition;
+
+            if (!(missionNamespace getVariable ["lamentPlaying", false])) then {
+                playSound3D [getMissionPath "data\lament.ogg", _coffin, false, getPosASL _coffin, 1, 1, 100];
+                missionNamespace setVariable ["lamentPlaying", true, true];
+                [{ missionNamespace setVariable ["lamentPlaying", false, true]; }, [], 39] call CBA_fnc_waitAndExecute;
+            };
             deleteVehicle _target;
 
         };
