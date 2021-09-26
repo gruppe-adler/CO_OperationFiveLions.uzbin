@@ -22,6 +22,8 @@ private _action = ["grad_minimissions_respawnAction", _displayName, "\A3\ui_f\da
             _coffin setDir _dir;
             _coffin setPosWorld _worldPosition;
 
+            [_coffin, true, [0, 2, 0.26], 0] remoteExec ["ace_dragging_fnc_setDraggable", 0, true];
+
             if (!(missionNamespace getVariable ["lamentPlaying", false])) then {
                 playSound3D [getMissionPath "data\lament.ogg", _coffin, false, getPosASL _coffin, 1, 1, 100];
                 missionNamespace setVariable ["lamentPlaying", true, true];
