@@ -29,6 +29,10 @@ if (!isNull (objectParent player) && {(driver _vehicle) != player}) then {
 			_tex setDir (getDir _vehicle);
 			_tex setObjectScale _scale;
 
+			_camera camSetTarget _tex;
+			_camera camSetFOV 0.3;
+			_camera camCommit _duration;
+
 			
 			[{
 				[_this, false] call grad_user_fnc_animateTexture;
@@ -42,7 +46,7 @@ if (!isNull (objectParent player) && {(driver _vehicle) != player}) then {
 			[{
 				_this cameraEffect ["terminate","back"];
 				camDestroy _this;
-			}, _camera, _duration] call CBA_fnc_waitAndExecute;
+			}, _camera, (_duration+5)] call CBA_fnc_waitAndExecute;
 
 
 		}, [_camera, _vehicle, _texture, _duration, _scale], 1] call CBA_fnc_waitAndExecute;
