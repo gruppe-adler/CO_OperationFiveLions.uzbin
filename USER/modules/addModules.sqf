@@ -14,7 +14,11 @@
 
 
 ["Five Lions", "Show Intro Raid 2", {
-     ["firstraid.paa", 15, 3] remoteExec ["USER\customCam\fn_showIntro.sqf", 0];
+     ["secondraid.paa", 15, 3] remoteExec ["USER\customCam\fn_showIntro.sqf", 0];
+}] call zen_custom_modules_fnc_register;
+
+["Five Lions", "Show Intro Convoy", {
+     ["convoyraid.paa", 15, 3] remoteExec ["USER\customCam\fn_showIntro.sqf", 0];
 }] call zen_custom_modules_fnc_register;
 
 
